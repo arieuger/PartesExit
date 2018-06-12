@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/navigation_parte_ultimos"
+        android:icon="@drawable/ic_query_builder_black_24dp"
+        android:title="@string/navigation_parte_ultimos_titulo"/>
+    <item android:id="@+id/navigation_parte_p"
+        android:icon="@drawable/ic_error_outline_black_24dp"
+        android:title="@string/navigation_parte_p_titulo"/>
+    <item android:id="@+id/navigation_parte_a"
+        android:icon="@drawable/ic_build_black_24dp"
+        android:title="@string/navigation_parte_a_titulo"/>
+    <item android:id="@+id/navigation_parte_c"
+        android:icon="@drawable/ic_done_black_24dp"
+        android:title="@string/navigation_parte_c_titulo"/>
+</menu>

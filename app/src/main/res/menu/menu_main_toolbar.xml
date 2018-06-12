@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mi_main_toolbar_buscar"
+        android:title="@string/mi_buscar"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_search_black_24dp" />
+
+    <item android:id="@+id/mi_main_toolbar_anadir"
+        android:title="@string/mi_anadir"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add_black_24dp"/>
+
+    <item android:id="@+id/mi_main_toolbar_borrar"
+        android:title="@string/mi_borrar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_clear_black_24dp" />
+
+    <item android:id="@+id/mi_main_toolbar_sinc"
+        android:title="@string/mi_sinc"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_sync_black_24dp" />
+
+    <item android:id="@+id/mi_main_toolbar_usr"
+        android:title="@string/mi_usuario"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_person_outline_black_24dp">
+    <!--TODO-->
+        <!--<menu>-->
+            <!--<item android:id="mi_usrsub_main_toolbar_cerrar_sesion"-->
+                <!--android:title="@string/mi_usrsub_cerrar_sesion" />-->
+            <!--<item android:id="mi_usrsub_main_toolbar_cambiar_empresa"-->
+                <!--android:title="@string/mi_usrsub_cambiar_empresa"/>-->
+        <!--</menu>-->
+
+    </item>
+</menu>
+

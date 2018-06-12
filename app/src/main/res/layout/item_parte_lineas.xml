@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp">
+
+
+        <TextView
+            android:id="@+id/tvItemLineaOrden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/tvItemLineaDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Hora técnica de trabajo" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_person_black_24dp" />
+
+        <TextView
+            android:id="@+id/tvItemLineaCodigoEmpleado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/tvItemLineaNombreEmpleado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="ANTÍA ROIG REGUEIRA" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_today_black_24dp" />
+
+        <TextView
+            android:id="@+id/tvItemLineaFechaRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            tools:text="16/04/2018" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_event_black_24dp" />
+
+        <TextView
+            android:id="@+id/tvItemLineaFechaEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="16/04/2018" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:textAlignment="gravity"
+            android:layout_gravity="center"
+            android:text="@string/item_parte_lineas_gastos_rotulo" />
+
+        <ImageView
+            android:id="@+id/ivItemLineaGastos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_clear_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"
+            android:text="@string/item_parte_lineas_facturable_rotulo" />
+
+        <ImageView
+            android:id="@+id/ivItemLineaFacturable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_done_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"
+            android:text="@string/item_parte_lineas_unidades_rotulo" />
+
+        <TextView
+            android:id="@+id/tvItemLineaUnidades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:text="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:src="@drawable/ic_euro_symbol_black_24dp"
+            android:layout_marginEnd="7dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_parte_lineas_precio_rotulo"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/tvItemLineaPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="30"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginEnd="25dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_parte_lineas_importe_rotulo"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/tvItemLineaImporte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="30"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>

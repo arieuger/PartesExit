@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetallesParteActivity"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+
+    <!--INFORMACIÓN -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_info_outline_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteEjercicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            tools:text="2017"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteSerie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            tools:text="A"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteNumero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            tools:text="137"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/ivDetallesParteEstado"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/p_p"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="5dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_today_black_24dp"
+            android:layout_marginEnd="3dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/etDetallesParteFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:hint="recepción "
+            android:textSize="14sp"
+            android:layout_marginEnd="30dp"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_event_black_24dp"
+            android:layout_marginEnd="3dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/etDetallesParteFechaEjec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:hint="18/12/16 "
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="5dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_person_black_24dp"
+            android:layout_marginEnd="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tvDetallesParteNumeroEmpleado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            tools:text="1"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteNombreEmpleado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="ANTÍA ROIG REGUEIRA"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:layout_marginStart="5dp">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_work_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteNumeroProyecto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            tools:text="0"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteNombreProyecto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detalles_activity_s_p_asociado"/>
+
+        <Spinner
+            android:id="@+id/spDetallesParteNombreProyecto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+    <!-- CLIENTE -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_people_outline_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteRazonSocialCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            tools:text="COSMÉTICA MUULHOA SL"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:layout_marginStart="5dp">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_description_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteNumeroCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            tools:text="12344676"/>
+
+        <EditText
+            android:id="@+id/etDetallesParteNumeroCliente"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tvDetallesParteCifDniCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="3"
+            tools:text="1aasd2676"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="5dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:layout_marginEnd="5dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvDetallesParteDomicilioCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                tools:text="Rua da Raíña 386"/>
+
+        </LinearLayout>
+    <!-- COMENTARIOS -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/detalles_activity_c_recepcion_rotulo"/>
+
+    <EditText
+        android:id="@+id/etDetallesParteCRecepcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="textMultiLine"
+        android:hint="@string/detalles_activity_c_recepcion_hint"
+        android:gravity="top"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/detalles_activity_c_cierre_rotulo"/>
+
+    <EditText
+        android:id="@+id/etDetallesParteCCierre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:hint="@string/detalles_activity_c_cierre_hint"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="@string/detalles_activity_importe_rotulo"/>
+        <TextView android:id="@+id/tvDetallesParteImporte"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            tools:text="100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="@string/detalles_activity_gastos_rotulo"/>
+        <TextView android:id="@+id/tvDetallesParteGastos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            tools:text="100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="@string/detalles_activity_facturable_rotulo" />
+        <TextView android:id="@+id/tvDetallesParteFacturable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="100"/>
+    </LinearLayout>
+
+</LinearLayout>

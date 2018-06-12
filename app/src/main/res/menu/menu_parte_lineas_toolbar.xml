@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mi_parte_lineas_toolbar_anadir"
+        android:title="@string/mi_anadir"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add_black_24dp"/>
+
+    <item android:id="@+id/mi_parte_lineas_toolbar_borrar"
+        android:title="@string/mi_borrar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_clear_black_24dp" />
+
+    <item android:id="@+id/mi_parte_lineas_toolbar_editar"
+        android:title="@string/mi_usuario"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_mode_edit_black_24dp"/>
+</menu>

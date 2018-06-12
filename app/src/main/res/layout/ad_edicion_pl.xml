@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edicion_pl_activity_codigo_articulo_rotulo"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/etEdicionPlCodigoArticulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/ivEdicionPlBuscarArticulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_black_24dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edicion_pl_activity_descripcion_articulo_rotulo"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/etEdicionPlDescripcionArticulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/ivEdicionPlBuscarArticuloPDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_black_24dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spEdicionPlSeleccionArticuloPDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:paddingTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_person_black_24dp" />
+
+        <TextView
+            android:id="@+id/tvEdicionPlCodigoEmpleado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/tvEdicionPlNombreEmpleado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="ANTÍA ROIG REGUEIRA" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_today_black_24dp"
+            android:layout_marginEnd="3dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/etEdicionPlFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:hint="recepción "
+            android:textSize="14sp"
+            android:layout_marginEnd="30dp"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_event_black_24dp"
+            android:layout_marginEnd="3dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/etEdicionPlFechaEjec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:hint="18/12/16 "
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbEdicionPLGastos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edicion_pl_activity_cb_gastos_rotulo" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/cbEdicionPLFacturable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edicion_pl_activity_cb_facturable_rotulo" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edicion_plactivity_etunidades_rotulo"/>
+
+        <EditText
+            android:id="@+id/etEdicionPLUnidades"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:text="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_euro_symbol_black_24dp"
+            android:layout_marginEnd="7dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_parte_lineas_precio_rotulo"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/tvEdicionPLPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="30"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="25dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_parte_lineas_importe_rotulo"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/tvEdicionPLImporte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="30"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>

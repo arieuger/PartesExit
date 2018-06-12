@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_info_outline_black_24dp"
+        android:layout_marginEnd="5dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvADNuevoParteEjercicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        tools:text="2017"/>
+
+    <TextView
+        android:id="@+id/tvADNuevoParteSerie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        tools:text="A"/>
+
+    <TextView
+        android:id="@+id/tvADNuevoParteNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        tools:text="137"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ad_nuevo_parte_buscar_por_rotulo"
+            android:layout_marginEnd="10dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgAdNuevoParteBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbAdNuevoParteBuscarPNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:checked="true"
+                android:layout_marginEnd="15dp"/>
+
+            <RadioButton
+                android:id="@+id/rbAdNuevoParteBuscarPCifDni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CIF/DNI" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llADNBusquedaCif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+
+        <EditText
+            android:id="@+id/etADNuevoParteCifDniCliente"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:hint="@string/ad_nuevo_parte_hint_cif_dni_cliente"/>
+
+        <ImageView
+            android:id="@+id/ivADNuevoParteBuscar"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_search_black_24dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
+            android:clickable="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llADNBusquedaNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/etADNuevoParteNombreCliente"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:hint="@string/ad_nuevo_parte_hint_nombre_cliente"/>
+
+        <ImageView
+            android:id="@+id/ivADNuevoParteBuscarNombre"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_search_black_24dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
+            android:clickable="true" />
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spADNuevoParteBusquedaNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/llADN1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_people_outline_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvADNuevoParteRazonSocialCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            tools:text="COSMÉTICA MUULHOA SL"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llADN2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_location_on_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvADNuevoParteDomicilioCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            tools:text="Rua da Raíña 386"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llADN3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_work_black_24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"/>
+
+
+        <Spinner
+            android:id="@+id/spADNuevoParteNombreProyecto"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/ivItemParteCabeceraEstado"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/letra_a"
+        android:layout_marginEnd="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+            <TextView
+                android:id="@+id/tvItemParteCabeceraNumero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                tools:text="137"/>
+
+            <TextView
+                android:id="@+id/tvItemParteCabeceraEjercicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:textSize="12sp"
+                tools:text="2017"/>
+
+            <TextView
+                android:id="@+id/tvItemParteCabeceraSerie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:textSize="12sp"
+                tools:text="A"/>
+
+
+            <TextView
+                android:id="@+id/tvItemParteCabeceraNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="COSMÉTICA MULHOA"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:layout_marginEnd="5dp"/>
+
+            <TextView
+                android:id="@+id/tvItemParteCabeceraEmpleado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                tools:text="1"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_euro_symbol_black_24dp"
+                android:layout_marginEnd="3dp"/>
+
+            <TextView
+                android:id="@+id/tvItemParteCabeceraImporte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                tools:text="23,40"/>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_event_note_black_24dp"
+                android:layout_marginEnd="3dp"/>
+
+            <TextView
+                android:id="@+id/tvItemParteCabeceraFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                tools:text="21/08/2017"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

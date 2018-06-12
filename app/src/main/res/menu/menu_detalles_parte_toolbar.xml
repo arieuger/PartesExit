@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/mi_detalles_parte_toolbar_guardar"
+        android:title="@string/mi_guardar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_save_black_24dp"/>
+
+    <item android:id="@+id/mi_detalles_parte_toolbar_descartar"
+        android:title="@string/mi_descartar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_undo_black_24dp"/>
+
+    <item android:id="@+id/mi_detalles_parte_toolbar_borrar"
+        android:title="@string/mi_borrar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_clear_black_24dp" />
+
+    <item android:id="@+id/mi_detalles_parte_toolbar_lineas"
+        android:title="@string/mi_lineas"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_list_black_24dp"/>
+
+</menu>
