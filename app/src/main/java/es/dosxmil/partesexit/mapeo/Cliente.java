@@ -7,30 +7,30 @@ import es.dosxmil.partesexit.MainActivity;
 
 public class Cliente {
 
-    private int codigoEmpresa;
-    private String codigoCliente;
-    private String siglaNacion;
-    private String cifDni;
-    private String cifEuropeo;
-    private String razonSocial;
-    private String nombre;
-    private String domicilio;
-    private int codigoCondiciones;
+    private int CodigoEmpresa;
+    private String CodigoCliente;
+    private String SiglaNacion;
+    private String CifDni;
+    private String CifEuropeo;
+    private String RazonSocial;
+    private String Nombre;
+    private String Domicilio;
+    private int CodigoCondiciones;
 
     private static String[] columnas = new String[]{"_id","CodigoEmpresa","CodigoCliente","SiglaNacion",
             "CifDni","CifEuropeo","RazonSocial","Nombre","Domicilio", "CodigoCondiciones"};
 
 
     public Cliente(int codigoEmpresa, String codigoCliente, String siglaNacion, String cifDni, String cifEuropeo, String razonSocial, String nombre, String domicilio, int codigoCondiciones) {
-        this.codigoEmpresa = codigoEmpresa;
-        this.codigoCliente = codigoCliente;
-        this.siglaNacion = siglaNacion;
-        this.cifDni = cifDni;
-        this.cifEuropeo = cifEuropeo;
-        this.razonSocial = razonSocial;
-        this.nombre = nombre;
-        this.domicilio = domicilio;
-        this.codigoCondiciones = codigoCondiciones;
+        this.CodigoEmpresa = codigoEmpresa;
+        this.CodigoCliente = codigoCliente;
+        this.SiglaNacion = siglaNacion;
+        this.CifDni = cifDni;
+        this.CifEuropeo = cifEuropeo;
+        this.RazonSocial = razonSocial;
+        this.Nombre = nombre;
+        this.Domicilio = domicilio;
+        this.CodigoCondiciones = codigoCondiciones;
     }
 
     public static Cliente clientePorCodigo(String codigo) {
@@ -74,53 +74,53 @@ public class Cliente {
 
     public static void guardar(Cliente c) {
         ContentValues cv = new ContentValues();
-        cv.put(columnas[1], c.codigoEmpresa);
-        cv.put(columnas[2], c.codigoCliente);
-        cv.put(columnas[3], c.siglaNacion);
-        cv.put(columnas[4], c.cifDni);
-        cv.put(columnas[5], c.cifEuropeo);
-        cv.put(columnas[6], c.razonSocial);
-        cv.put(columnas[7], c.nombre);
-        cv.put(columnas[8], c.domicilio);
-        cv.put(columnas[9], c.codigoCondiciones);
+        cv.put(columnas[1], c.CodigoEmpresa);
+        cv.put(columnas[2], c.CodigoCliente);
+        cv.put(columnas[3], c.SiglaNacion);
+        cv.put(columnas[4], c.CifDni);
+        cv.put(columnas[5], c.CifEuropeo);
+        cv.put(columnas[6], c.RazonSocial);
+        cv.put(columnas[7], c.Nombre);
+        cv.put(columnas[8], c.Domicilio);
+        cv.put(columnas[9], c.CodigoCondiciones);
 
         MainActivity.getDb().insert("Clientes",null,cv);
     }
 
     public int getCodigoEmpresa() {
-        return codigoEmpresa;
+        return CodigoEmpresa;
     }
 
     public String getCodigoCliente() {
-        return codigoCliente;
+        return CodigoCliente;
     }
 
     public String getSiglaNacion() {
-        return siglaNacion;
+        return SiglaNacion;
     }
 
     public String getCifDni() {
-        return cifDni;
+        return CifDni;
     }
 
     public String getCifEuropeo() {
-        return cifEuropeo;
+        return CifEuropeo;
     }
 
     public String getRazonSocial() {
-        return razonSocial;
+        return RazonSocial;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public String getDomicilio() {
-        return domicilio;
+        return Domicilio;
     }
 
     public int getCodigoCondiciones() {
-        return codigoCondiciones;
+        return CodigoCondiciones;
     }
 
     public static Cursor getAllCursor() {

@@ -8,39 +8,39 @@ import java.util.ArrayList;
 import es.dosxmil.partesexit.MainActivity;
 
 public class Articulo {
-    private String codigoArticulo;
-    private String descripcionArticulo;
-    private double precioNetoVenta;
+    private String CodigoArticulo;
+    private String DescripcionArticulo;
+    private double PrecioNetoVenta;
     private static String [] columnas = new String[]{"_id","CodigoArticulo", "DescripcionArticulo", "PrecioNetoVenta"};
 
     public Articulo(String codigoArticulo, String descripcionArticulo, double precioNetoVenta) {
-        this.codigoArticulo = codigoArticulo;
-        this.descripcionArticulo = descripcionArticulo;
-        this.precioNetoVenta = precioNetoVenta;
+        this.CodigoArticulo = codigoArticulo;
+        this.DescripcionArticulo = descripcionArticulo;
+        this.PrecioNetoVenta = precioNetoVenta;
     }
 
     public String getCodigoArticulo() {
-        return codigoArticulo;
+        return CodigoArticulo;
     }
 
     public void setCodigoArticulo(String codigoArticulo) {
-        this.codigoArticulo = codigoArticulo;
+        this.CodigoArticulo = codigoArticulo;
     }
 
     public String getDescripcionArticulo() {
-        return descripcionArticulo;
+        return DescripcionArticulo;
     }
 
     public void setDescripcionArticulo(String descripcionArticulo) {
-        this.descripcionArticulo = descripcionArticulo;
+        this.DescripcionArticulo = descripcionArticulo;
     }
 
     public double getPrecioNetoVenta() {
-        return precioNetoVenta;
+        return PrecioNetoVenta;
     }
 
     public void setPrecioNetoVenta(double precioNetoVenta) {
-        this.precioNetoVenta = precioNetoVenta;
+        this.PrecioNetoVenta = precioNetoVenta;
     }
 
 
@@ -50,9 +50,9 @@ public class Articulo {
 
     public static void guardar(Articulo a) {
         ContentValues cv = new ContentValues();
-        cv.put("CodigoArticulo", a.codigoArticulo);
-        cv.put("DescripcionArticulo", a.descripcionArticulo);
-        cv.put("PrecioNetoVenta", a.precioNetoVenta);
+        cv.put("CodigoArticulo", a.CodigoArticulo);
+        cv.put("DescripcionArticulo", a.DescripcionArticulo);
+        cv.put("PrecioNetoVenta", a.PrecioNetoVenta);
 
         MainActivity.getDb().insert("Articulos",null,cv);
     }

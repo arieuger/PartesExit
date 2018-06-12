@@ -1,13 +1,11 @@
 package es.dosxmil.partesexit.mapeo;
 
 import android.content.ContentValues;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 import android.util.Pair;
-import android.widget.Toast;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -18,38 +16,44 @@ import es.dosxmil.partesexit.utils.Utils;
 
 public class ParteCabecera implements Parcelable {
 
+    // no subir
     private long id;
 
-    private int codigoEmpresa;
-    private int ejercicioParte;
-    private String serieParte;
-    private int numeroParte;
-    private String statusParte;
-    private String tipoParte;
-    private String descripcionTipoParte;
-    private String codigoArticulo;
-    private String descripcionArticulo;
-    private String fechaParte;
-    private String fechaEjecucion;
-    private int codigoEmpleado;
-    private String nombreCompleto;
-    private int codigoProyecto;
-    private String nombreProyecto;
-    private String comentarioCierre;
-    private String comentarioRecepcion;
-    private String codigoCliente;
-    private String nombre;
-    private double importe;
-    private double importeGastos;
-    private double importeFacturable;
-    private int codigoUsuario;
-    private String fechaUltimaModificacion;
+    private int CodigoEmpresa;
+    private int EjercicioParte;
+    private String SerieParte;
+    private int NumeroParte;
+    private String StatusParte;
+    private String TipoParte;
+    private String DescripcionTipoParte;
+    private String CodigoArticulo;
+    private String DescripcionArticulo;
+    private String FechaParte;
+    private String FechaEjecucion;
+    private int CodigoEmpleado;
+    private String NombreCompleto;
+    private int CodigoProyecto;
+    private String NombreProyecto;
+    private String ComentarioCierre;
+    private String ComentarioRecepcion;
+    private String CodigoCliente;
+    private String Nombre;
+    private double Importe;
+    private double ImporteGastos;
+    private double ImporteFacturable;
+    private int CodigoUsuario;
+    private String FechaUltimaModificacion;
+
+    // no subir
     private int plDescargado;
-    private String fechaCierre;
-    private double horaCierre;
-    private double totalUnidades;
-    private String nombreUsuarioCierre;
-    private int codigoUsuarioCierre;
+
+    private String FechaCierre;
+    private double HoraCierre;
+    private double TotalUnidades;
+    private String NombreUsuarioCierre;
+    private int CodigoUsuarioCierre;
+
+    // no subir
     private int sincroMovil;
     // TODO: FirmaParteEntrada (Imaxe)
 
@@ -69,36 +73,36 @@ public class ParteCabecera implements Parcelable {
                          double importeFacturable, int codigoUsuario, String fechaUltimaModificacion, int plDescargado,
                          String fechaCierre, double horaCierre, double totalUnidades, String nombreUsuarioCierre,
                          int codigoUsuarioCierre, int sincroMovil) {
-        this.codigoEmpresa = codigoEmpresa;
-        this.ejercicioParte = ejercicioParte;
-        this.serieParte = serieParte;
-        this.numeroParte = numeroParte;
-        this.statusParte = statusParte;
-        this.tipoParte = tipoParte;
-        this.descripcionTipoParte = descripcionTipoParte;
-        this.codigoArticulo = codigoArticulo;
-        this.descripcionArticulo = descripcionArticulo;
-        this.fechaParte = fechaParte;
-        this.fechaEjecucion = fechaEjecucion;
-        this.codigoEmpleado = codigoEmpleado;
-        this.nombreCompleto = nombreCompleto;
-        this.codigoProyecto = codigoProyecto;
-        this.nombreProyecto = nombreProyecto;
-        this.comentarioCierre = comentarioCierre;
-        this.comentarioRecepcion = comentarioRecepcion;
-        this.codigoCliente = codigoCliente;
-        this.nombre = nombre;
-        this.importe = importe;
-        this.importeGastos = importeGastos;
-        this.importeFacturable = importeFacturable;
-        this.codigoUsuario = codigoUsuario;
-        this.fechaUltimaModificacion = fechaUltimaModificacion;
+        this.CodigoEmpresa = codigoEmpresa;
+        this.EjercicioParte = ejercicioParte;
+        this.SerieParte = serieParte;
+        this.NumeroParte = numeroParte;
+        this.StatusParte = statusParte;
+        this.TipoParte = tipoParte;
+        this.DescripcionTipoParte = descripcionTipoParte;
+        this.CodigoArticulo = codigoArticulo;
+        this.DescripcionArticulo = descripcionArticulo;
+        this.FechaParte = fechaParte;
+        this.FechaEjecucion = fechaEjecucion;
+        this.CodigoEmpleado = codigoEmpleado;
+        this.NombreCompleto = nombreCompleto;
+        this.CodigoProyecto = codigoProyecto;
+        this.NombreProyecto = nombreProyecto;
+        this.ComentarioCierre = comentarioCierre;
+        this.ComentarioRecepcion = comentarioRecepcion;
+        this.CodigoCliente = codigoCliente;
+        this.Nombre = nombre;
+        this.Importe = importe;
+        this.ImporteGastos = importeGastos;
+        this.ImporteFacturable = importeFacturable;
+        this.CodigoUsuario = codigoUsuario;
+        this.FechaUltimaModificacion = fechaUltimaModificacion;
         this.plDescargado = plDescargado;
-        this.fechaCierre = fechaCierre;
-        this.horaCierre = horaCierre;
-        this.totalUnidades = totalUnidades;
-        this.nombreUsuarioCierre = nombreUsuarioCierre;
-        this.codigoUsuarioCierre = codigoUsuarioCierre;
+        this.FechaCierre = fechaCierre;
+        this.HoraCierre = horaCierre;
+        this.TotalUnidades = totalUnidades;
+        this.NombreUsuarioCierre = nombreUsuarioCierre;
+        this.CodigoUsuarioCierre = codigoUsuarioCierre;
         this.sincroMovil = sincroMovil;
     }
 
@@ -277,7 +281,7 @@ public class ParteCabecera implements Parcelable {
 
     // GETTERS
     public long getId() {
-        Cursor c = MainActivity.getDb().query("ParteCabecera",columnas, "CodigoEmpresa = ? AND EjercicioParte = ? AND SerieParte = ? AND NumeroParte = ?", new String[]{codigoEmpresa+"",ejercicioParte+"",serieParte+"",numeroParte+""}, null, null, null);
+        Cursor c = MainActivity.getDb().query("ParteCabecera",columnas, "CodigoEmpresa = ? AND EjercicioParte = ? AND SerieParte = ? AND NumeroParte = ?", new String[]{CodigoEmpresa +"", EjercicioParte +"", SerieParte +"", NumeroParte +""}, null, null, null);
         if (c.moveToFirst())
             id = c.getLong(0);
         else
@@ -289,12 +293,12 @@ public class ParteCabecera implements Parcelable {
 
     public Pair<String, String>[] getArrayValores() {
 
-        Log.d("SINC", "fechaCierre = " + fechaCierre);
-        if (fechaCierre.equals("") || fechaCierre == null) fechaCierre = "1900-01-01 00:00:00";
-        Log.d("SINC",fechaCierre );
+        Log.d("SINC", "FechaCierre = " + FechaCierre);
+        if (FechaCierre.equals("") || FechaCierre == null) FechaCierre = "1900-01-01 00:00:00";
+        Log.d("SINC", FechaCierre);
 
         String estadoEjecucion = "";
-        switch (this.statusParte) {
+        switch (this.StatusParte) {
             case "A":
                 estadoEjecucion= "En ejecucion";
                 break;
@@ -304,30 +308,30 @@ public class ParteCabecera implements Parcelable {
         }
 
         Pair[] v = new Pair[]{
-                new Pair<String, String>("CodigoEmpresa", this.codigoEmpresa+""),
-                new Pair<String, String>("EjercicioParte",this.ejercicioParte+""),
-                new Pair<String, String>("SerieParte",this.serieParte+""),
-                new Pair<String, String>("NumeroParte",this.numeroParte+""),
-                new Pair<String, String>("StatusParte",this.statusParte),
-                new Pair<String, String>("CodigoArticulo",this.codigoArticulo),
-                new Pair<String, String>("DescripcionArticulo",this.descripcionArticulo),
-                new Pair<String, String>("FechaParte",Utils.FormatoSincronizacion(this.fechaParte)),
-                new Pair<String, String>("CodigoEmpleado",this.codigoEmpleado+""),
-                new Pair<String, String>("NombreCompleto",this.nombreCompleto),
-                new Pair<String, String>("CodigoProyecto",this.codigoProyecto+""),
-                new Pair<String, String>("NombreProyecto",this.nombreProyecto),
-                new Pair<String, String>("ComentarioCierre",this.comentarioCierre),
-                new Pair<String, String>("ComentarioRecepcion",this.comentarioRecepcion),
-                new Pair<String, String>("CodigoCliente",this.codigoCliente),
-                new Pair<String, String>("Importe",this.importe+""),
-                new Pair<String, String>("ImporteGastos",this.importeGastos+""),
-                new Pair<String, String>("ImporteFacturable",this.importeFacturable+""),
-                new Pair<String, String>("FechaUltimaModificacion",Utils.FormatoSincronizacion(this.fechaUltimaModificacion)),
-                new Pair<String, String>("FechaEjecucion",Utils.FormatoSincronizacion(this.fechaEjecucion)),
+                new Pair<String, String>("CodigoEmpresa", this.CodigoEmpresa +""),
+                new Pair<String, String>("EjercicioParte",this.EjercicioParte +""),
+                new Pair<String, String>("SerieParte",this.SerieParte +""),
+                new Pair<String, String>("NumeroParte",this.NumeroParte +""),
+                new Pair<String, String>("StatusParte",this.StatusParte),
+                new Pair<String, String>("CodigoArticulo",this.CodigoArticulo),
+                new Pair<String, String>("DescripcionArticulo",this.DescripcionArticulo),
+                new Pair<String, String>("FechaParte",Utils.FormatoSincronizacion(this.FechaParte)),
+                new Pair<String, String>("CodigoEmpleado",this.CodigoEmpleado +""),
+                new Pair<String, String>("NombreCompleto",this.NombreCompleto),
+                new Pair<String, String>("CodigoProyecto",this.CodigoProyecto +""),
+                new Pair<String, String>("NombreProyecto",this.NombreProyecto),
+                new Pair<String, String>("ComentarioCierre",this.ComentarioCierre),
+                new Pair<String, String>("ComentarioRecepcion",this.ComentarioRecepcion),
+                new Pair<String, String>("CodigoCliente",this.CodigoCliente),
+                new Pair<String, String>("Importe",this.Importe +""),
+                new Pair<String, String>("ImporteGastos",this.ImporteGastos +""),
+                new Pair<String, String>("ImporteFacturable",this.ImporteFacturable +""),
+                new Pair<String, String>("FechaUltimaModificacion",Utils.FormatoSincronizacion(this.FechaUltimaModificacion)),
+                new Pair<String, String>("FechaEjecucion",Utils.FormatoSincronizacion(this.FechaEjecucion)),
                 new Pair<String, String>("EstadoEjecucion",estadoEjecucion),
-                new Pair<String, String>("CodigoUsuarioCierre",this.codigoUsuarioCierre+""),
-                new Pair<String, String>("FechaCierre",Utils.FormatoSincronizacion(fechaCierre)),
-                new Pair<String, String>("HoraCierre",this.horaCierre+"")};
+                new Pair<String, String>("CodigoUsuarioCierre",this.CodigoUsuarioCierre +""),
+                new Pair<String, String>("FechaCierre",Utils.FormatoSincronizacion(FechaCierre)),
+                new Pair<String, String>("HoraCierre",this.HoraCierre +"")};
 
         return v;
     }
@@ -336,91 +340,91 @@ public class ParteCabecera implements Parcelable {
         return columnas;
     }
     public int getCodigoEmpresa() {
-        return codigoEmpresa;
+        return CodigoEmpresa;
     }
     public int getEjercicioParte() {
-        return ejercicioParte;
+        return EjercicioParte;
     }
     public String getSerieParte() {
-        return serieParte;
+        return SerieParte;
     }
     public int getNumeroParte() {
-        return numeroParte;
+        return NumeroParte;
     }
     public String getStatusParte() {
-        return statusParte;
+        return StatusParte;
     }
     public String getTipoParte() {
-        return tipoParte;
+        return TipoParte;
     }
     public String getDescripcionTipoParte() {
-        return descripcionTipoParte;
+        return DescripcionTipoParte;
     }
     public String getCodigoArticulo() {
-        return codigoArticulo;
+        return CodigoArticulo;
     }
     public String getDescripcionArticulo() {
-        return descripcionArticulo;
+        return DescripcionArticulo;
     }
     public String getFechaParte() {
-        return fechaParte;
+        return FechaParte;
     }
     public String getFechaEjecucion() {
-        return fechaEjecucion;
+        return FechaEjecucion;
     }
     public int getCodigoEmpleado() {
-        return codigoEmpleado;
+        return CodigoEmpleado;
     }
     public String getNombreCompleto() {
-        return nombreCompleto;
+        return NombreCompleto;
     }
     public int getCodigoProyecto() {
-        return codigoProyecto;
+        return CodigoProyecto;
     }
     public String getNombreProyecto() {
-        return nombreProyecto;
+        return NombreProyecto;
     }
     public String getComentarioCierre() {
-        return comentarioCierre;
+        return ComentarioCierre;
     }
     public String getComentarioRecepcion() {
-        return comentarioRecepcion;
+        return ComentarioRecepcion;
     }
     public String getCodigoCliente() {
-        return codigoCliente;
+        return CodigoCliente;
     }
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
     public double getImporte() {
-        return importe;
+        return Importe;
     }
     public double getImporteGastos() {
-        return importeGastos;
+        return ImporteGastos;
     }
     public double getImporteFacturable() {
-        return importeFacturable;
+        return ImporteFacturable;
     }
     public int getCodigoUsuario() {
-        return codigoUsuario;
+        return CodigoUsuario;
     }
     public String getFechaUltimaModificacion() {
-        return fechaUltimaModificacion;
+        return FechaUltimaModificacion;
     }
     public int getPlDescargado() {
         return plDescargado;
     }
     public double getHoraCierre() {
-        return horaCierre;
+        return HoraCierre;
     }
     public double getTotalUnidades() {
-        return totalUnidades;
+        return TotalUnidades;
     }
     public String getNombreUsuarioCierre() {
-        return nombreUsuarioCierre;
+        return NombreUsuarioCierre;
     }
     public int getCodigoUsuarioCierre() {
-        return codigoUsuarioCierre;
+        return CodigoUsuarioCierre;
     }
     public int getSincroMovil() {
             return sincroMovil;
@@ -431,49 +435,49 @@ public class ParteCabecera implements Parcelable {
         this.plDescargado = plDescargado;
     }
     public void setStatusParte(String statusParte) {
-        this.statusParte = statusParte;
+        this.StatusParte = statusParte;
     }
     public void setFechaParte(String fechaParte) {
-        this.fechaParte = fechaParte;
+        this.FechaParte = fechaParte;
     }
     public void setFechaEjecucion(String fechaEjecucion) {
-        this.fechaEjecucion = fechaEjecucion;
+        this.FechaEjecucion = fechaEjecucion;
     }
     public void setComentarioCierre(String comentarioCierre) {
-        this.comentarioCierre = comentarioCierre;
+        this.ComentarioCierre = comentarioCierre;
     }
     public void setComentarioRecepcion(String comentarioRecepcion) {
-        this.comentarioRecepcion = comentarioRecepcion;
+        this.ComentarioRecepcion = comentarioRecepcion;
     }
     public void setFechaUltimaModificacion(String fechaUltimaModificacion) {
-        this.fechaUltimaModificacion = fechaUltimaModificacion;
+        this.FechaUltimaModificacion = fechaUltimaModificacion;
     }
     public void setImporteFacturable(double importeFacturable) {
-        this.importeFacturable = importeFacturable;
+        this.ImporteFacturable = importeFacturable;
     }
     public void setImporteGastos(double importeGastos) {
-        this.importeGastos = importeGastos;
+        this.ImporteGastos = importeGastos;
     }
     public void setImporte(double importe) {
-        this.importe = importe;
+        this.Importe = importe;
     }
     public String getFechaCierre() {
-        return fechaCierre;
+        return FechaCierre;
     }
     public void setFechaCierre(String fechaCierre) {
-        this.fechaCierre = fechaCierre;
+        this.FechaCierre = fechaCierre;
     }
     public void setHoraCierre(double horaCierre) {
-        this.horaCierre = horaCierre;
+        this.HoraCierre = horaCierre;
     }
     public void setTotalUnidades(double totalUnidades) {
-        this.totalUnidades = totalUnidades;
+        this.TotalUnidades = totalUnidades;
     }
     public void setNombreUsuarioCierre(String nombreUsuarioCierre) {
-        this.nombreUsuarioCierre = nombreUsuarioCierre;
+        this.NombreUsuarioCierre = nombreUsuarioCierre;
     }
     public void setCodigoUsuarioCierre(int codigoUsuarioCierre) {
-        this.codigoUsuarioCierre = codigoUsuarioCierre;
+        this.CodigoUsuarioCierre = codigoUsuarioCierre;
     }
     public void setSincroMovil(int sincroMovil) {
         this.sincroMovil = sincroMovil;
@@ -481,36 +485,36 @@ public class ParteCabecera implements Parcelable {
 
     // SERIALIZACIÓN
     protected ParteCabecera(Parcel in) {
-        codigoEmpresa = in.readInt();
-        ejercicioParte = in.readInt();
-        serieParte = in.readString();
-        numeroParte = in.readInt();
-        statusParte = in.readString();
-        tipoParte = in.readString();
-        descripcionTipoParte = in.readString();
-        codigoArticulo = in.readString();
-        descripcionArticulo = in.readString();
-        fechaParte = in.readString();
-        fechaEjecucion = in.readString();
-        codigoEmpleado = in.readInt();
-        nombreCompleto = in.readString();
-        codigoProyecto = in.readInt();
-        nombreProyecto = in.readString();
-        comentarioCierre = in.readString();
-        comentarioRecepcion = in.readString();
-        codigoCliente = in.readString();
-        nombre = in.readString();
-        importe = in.readDouble();
-        importeGastos = in.readDouble();
-        importeFacturable = in.readDouble();
-        codigoUsuario = in.readInt();
-        fechaUltimaModificacion = in.readString();
+        CodigoEmpresa = in.readInt();
+        EjercicioParte = in.readInt();
+        SerieParte = in.readString();
+        NumeroParte = in.readInt();
+        StatusParte = in.readString();
+        TipoParte = in.readString();
+        DescripcionTipoParte = in.readString();
+        CodigoArticulo = in.readString();
+        DescripcionArticulo = in.readString();
+        FechaParte = in.readString();
+        FechaEjecucion = in.readString();
+        CodigoEmpleado = in.readInt();
+        NombreCompleto = in.readString();
+        CodigoProyecto = in.readInt();
+        NombreProyecto = in.readString();
+        ComentarioCierre = in.readString();
+        ComentarioRecepcion = in.readString();
+        CodigoCliente = in.readString();
+        Nombre = in.readString();
+        Importe = in.readDouble();
+        ImporteGastos = in.readDouble();
+        ImporteFacturable = in.readDouble();
+        CodigoUsuario = in.readInt();
+        FechaUltimaModificacion = in.readString();
         plDescargado = in.readInt();
-        fechaCierre = in.readString();
-        horaCierre = in.readDouble();
-        totalUnidades = in.readDouble();
-        nombreUsuarioCierre = in.readString();
-        codigoUsuarioCierre = in.readInt();
+        FechaCierre = in.readString();
+        HoraCierre = in.readDouble();
+        TotalUnidades = in.readDouble();
+        NombreUsuarioCierre = in.readString();
+        CodigoUsuarioCierre = in.readInt();
         sincroMovil = in.readInt();
     }
 
@@ -533,72 +537,72 @@ public class ParteCabecera implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(codigoEmpresa);
-        dest.writeInt(ejercicioParte);
-        dest.writeString(serieParte);
-        dest.writeInt(numeroParte);
-        dest.writeString(statusParte);
-        dest.writeString(tipoParte);
-        dest.writeString(descripcionTipoParte);
-        dest.writeString(codigoArticulo);
-        dest.writeString(descripcionArticulo);
-        dest.writeString(fechaParte);
-        dest.writeString(fechaEjecucion);
-        dest.writeInt(codigoEmpleado);
-        dest.writeString(nombreCompleto);
-        dest.writeInt(codigoProyecto);
-        dest.writeString(nombreProyecto);
-        dest.writeString(comentarioCierre);
-        dest.writeString(comentarioRecepcion);
-        dest.writeString(codigoCliente);
-        dest.writeString(nombre);
-        dest.writeDouble(importe);
-        dest.writeDouble(importeGastos);
-        dest.writeDouble(importeFacturable);
-        dest.writeInt(codigoUsuario);
-        dest.writeString(fechaUltimaModificacion);
+        dest.writeInt(CodigoEmpresa);
+        dest.writeInt(EjercicioParte);
+        dest.writeString(SerieParte);
+        dest.writeInt(NumeroParte);
+        dest.writeString(StatusParte);
+        dest.writeString(TipoParte);
+        dest.writeString(DescripcionTipoParte);
+        dest.writeString(CodigoArticulo);
+        dest.writeString(DescripcionArticulo);
+        dest.writeString(FechaParte);
+        dest.writeString(FechaEjecucion);
+        dest.writeInt(CodigoEmpleado);
+        dest.writeString(NombreCompleto);
+        dest.writeInt(CodigoProyecto);
+        dest.writeString(NombreProyecto);
+        dest.writeString(ComentarioCierre);
+        dest.writeString(ComentarioRecepcion);
+        dest.writeString(CodigoCliente);
+        dest.writeString(Nombre);
+        dest.writeDouble(Importe);
+        dest.writeDouble(ImporteGastos);
+        dest.writeDouble(ImporteFacturable);
+        dest.writeInt(CodigoUsuario);
+        dest.writeString(FechaUltimaModificacion);
         dest.writeInt(plDescargado);
-        dest.writeString(fechaCierre);
-        dest.writeDouble(horaCierre);
-        dest.writeDouble(totalUnidades);
-        dest.writeString(nombreUsuarioCierre);
-        dest.writeInt(codigoUsuarioCierre);
+        dest.writeString(FechaCierre);
+        dest.writeDouble(HoraCierre);
+        dest.writeDouble(TotalUnidades);
+        dest.writeString(NombreUsuarioCierre);
+        dest.writeInt(CodigoUsuarioCierre);
         dest.writeInt(sincroMovil);
     }
 
 
     // MÉTODOS PRIVADOS
     private void putCv(ContentValues cv) {
-        cv.put(columnas[1], this.codigoEmpresa);
-        cv.put(columnas[2], this.ejercicioParte);
-        cv.put(columnas[3], this.serieParte);
-        cv.put(columnas[4], this.numeroParte);
-        cv.put(columnas[5], this.statusParte);
-        cv.put(columnas[6], this.tipoParte);
-        cv.put(columnas[7], this.descripcionTipoParte);
-        cv.put(columnas[8], this.codigoArticulo);
-        cv.put(columnas[9], this.descripcionArticulo);
-        cv.put(columnas[10], this.fechaParte);
-        cv.put(columnas[11], this.fechaEjecucion);
-        cv.put(columnas[12], this.codigoEmpleado);
-        cv.put(columnas[13], this.nombreCompleto);
-        cv.put(columnas[14], this.codigoProyecto);
-        cv.put(columnas[15], this.nombreProyecto);
-        cv.put(columnas[16], this.comentarioCierre);
-        cv.put(columnas[17], this.comentarioRecepcion);
-        cv.put(columnas[18], this.codigoCliente);
-        cv.put(columnas[19], this.nombre);
-        cv.put(columnas[20], this.importe);
-        cv.put(columnas[21], this.importeGastos);
-        cv.put(columnas[22], this.importeFacturable);
-        cv.put(columnas[23], this.codigoUsuario);
-        cv.put(columnas[24], this.fechaUltimaModificacion);
+        cv.put(columnas[1], this.CodigoEmpresa);
+        cv.put(columnas[2], this.EjercicioParte);
+        cv.put(columnas[3], this.SerieParte);
+        cv.put(columnas[4], this.NumeroParte);
+        cv.put(columnas[5], this.StatusParte);
+        cv.put(columnas[6], this.TipoParte);
+        cv.put(columnas[7], this.DescripcionTipoParte);
+        cv.put(columnas[8], this.CodigoArticulo);
+        cv.put(columnas[9], this.DescripcionArticulo);
+        cv.put(columnas[10], this.FechaParte);
+        cv.put(columnas[11], this.FechaEjecucion);
+        cv.put(columnas[12], this.CodigoEmpleado);
+        cv.put(columnas[13], this.NombreCompleto);
+        cv.put(columnas[14], this.CodigoProyecto);
+        cv.put(columnas[15], this.NombreProyecto);
+        cv.put(columnas[16], this.ComentarioCierre);
+        cv.put(columnas[17], this.ComentarioRecepcion);
+        cv.put(columnas[18], this.CodigoCliente);
+        cv.put(columnas[19], this.Nombre);
+        cv.put(columnas[20], this.Importe);
+        cv.put(columnas[21], this.ImporteGastos);
+        cv.put(columnas[22], this.ImporteFacturable);
+        cv.put(columnas[23], this.CodigoUsuario);
+        cv.put(columnas[24], this.FechaUltimaModificacion);
         cv.put(columnas[25], this.plDescargado);
-        cv.put(columnas[26], this.fechaCierre);
-        cv.put(columnas[27], this.horaCierre);
-        cv.put(columnas[28], this.totalUnidades);
-        cv.put(columnas[29], this.nombreUsuarioCierre);
-        cv.put(columnas[30], this.codigoUsuarioCierre);
+        cv.put(columnas[26], this.FechaCierre);
+        cv.put(columnas[27], this.HoraCierre);
+        cv.put(columnas[28], this.TotalUnidades);
+        cv.put(columnas[29], this.NombreUsuarioCierre);
+        cv.put(columnas[30], this.CodigoUsuarioCierre);
         cv.put(columnas[31], this.sincroMovil);
     }
 }

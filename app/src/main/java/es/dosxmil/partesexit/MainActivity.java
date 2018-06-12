@@ -31,6 +31,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,16 +101,31 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.mainBottomNavigationWeb);
-
         pbMain = (ProgressBar) findViewById(R.id.pbMain);
-
-
         lvPartesCabecera = (ListView)findViewById(R.id.lvMainActivityPartesCabecera);
 
         lvPartesCabecera.setOnItemClickListener(this);
-
         lvPartesCabecera.setOnItemLongClickListener(this);
+
+
+        // configuración de gson
+        Gson gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
+            @Override
+            public boolean shouldSkipField(FieldAttributes f) {
+                return f.getName().equals("id") || f.getName().equals("plDescargado") || f.getName().equals("sincroMovil");
+            }
+
+            @Override
+            public boolean shouldSkipClass(Class<?> clazz) {
+                return false;
+            }
+        }).create();
+
+        cliente = new Retrofit.Builder().baseUrl(ApiService.URL)
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
+        apiService = cliente.create(ApiService.class);
 
 
         // Na primeira entrada, creación da base de datos
@@ -118,40 +137,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         codigoEmpresa = sp.getInt("EMPRESA_DFLT", -1);
 
         Cursor c = ParteCabecera.getAllCursor();
+
+        // DESCARGAS INICIALES
         if (c.getCount() == 0) {
             pbMain.setVisibility(View.VISIBLE);
-           // descargaDatos(this, url+codigoEmpresa, DPARTES, new Pair<String, String>("codigoEmpresa",codigoEmpresa+""));
-
-            cliente = new Retrofit.Builder().baseUrl(ApiService.URL)
-                    .addConverterFactory(GsonConverterFactory.create()).build();
-            apiService = cliente.create(ApiService.class);
-            apiService.getPartesCabecera("Bearer " + sp.getString("TOKEN",""),codigoEmpresa).enqueue(new Callback<List<ParteCabecera>>() {
-                @Override
-                public void onResponse(Call<List<ParteCabecera>> call, retrofit2.Response<List<ParteCabecera>> response) {
-                    Log.d("retrofit",response.code()+"" + ": " + response.message());
-                    if (response.isSuccessful()) {
-                        listaPartes = response.body();
-                        Log.d("retrofit ",listaPartes.size()+"");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<ParteCabecera>> call, Throwable t) {
-                    Log.d("retrofit","hola");
-                }
-            });
-
+            descargaPC();
         }
-
-        if (Cliente.getAllCursor().getCount() == 0) {
-            Toast.makeText(MainActivity.this, "Descargando clientes...", Toast.LENGTH_SHORT).show();
-            descargaDatos(MainActivity.this, urlClientes, DCLIENTES,
-                    new Pair<String, String>("codigoEmpresa",codigoEmpresa+""));
-        }
-
+        if (Cliente.getAllCursor().getCount() == 0) descargaC();
         if (Articulo.getAllCursor().getCount() == 0) {
-            Toast.makeText(this, "Descargando artículos...", Toast.LENGTH_SHORT).show();
-            descargaDatos(this, urlArticulos, DARTICULOS, new Pair<String, String>("codigoEmpresa",codigoEmpresa+""));
+            descargaA();
+            pbMain.setVisibility(View.GONE);
+            fillListView(this,lvPartesCabecera,ParteCabecera.getAllCursor());
         }
 
         else fillListView(this, lvPartesCabecera, c);
@@ -504,5 +500,63 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         }
         return true;
+    }
+
+    private void descargaPC() {
+        apiService.getPartesCabecera("Bearer " + sp.getString("TOKEN",""),codigoEmpresa).enqueue(new Callback<List<ParteCabecera>>() {
+            @Override
+            public void onResponse(Call<List<ParteCabecera>> call, retrofit2.Response<List<ParteCabecera>> response) {
+                Log.d("retrofit p",response.code()+"" + ": " + response.message());
+                if (response.isSuccessful()) {
+                    listaPartes = response.body();
+                    Log.d("retrofit p",listaPartes.size()+"");
+                    for (ParteCabecera pc : listaPartes)
+                        ParteCabecera.guardar(pc);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ParteCabecera>> call, Throwable t) {
+                Log.d("retrofit p",t.getMessage());
+            }
+        });
+    }
+
+    private void descargaC() {
+        apiService.getClientes("Bearer " + sp.getString("TOKEN",""),codigoEmpresa).enqueue(new Callback<List<Cliente>>() {
+            @Override
+            public void onResponse(Call<List<Cliente>> call, retrofit2.Response<List<Cliente>> response) {
+                List<Cliente> listaClientes = response.body();
+                Log.d("retrofit c", listaClientes.size()+"");
+                for (Cliente c : listaClientes) {
+                    Log.d("retrofit c", c.getCifDni());
+                    Cliente.guardar(c);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Cliente>> call, Throwable t) {
+                Log.d("retrofit c",t.getMessage());
+            }
+        });
+    }
+
+    private void descargaA() {
+        apiService.getArticulos("Bearer " + sp.getString("TOKEN",""), codigoEmpresa).enqueue(new Callback<List<Articulo>>() {
+            @Override
+            public void onResponse(Call<List<Articulo>> call, retrofit2.Response<List<Articulo>> response) {
+                List<Articulo> listaArticulos = response.body();
+                Log.d("retrofit a", listaArticulos.size()+"");
+                for (Articulo a : listaArticulos) {
+                    Log.d("retrofit a", a.getCodigoArticulo());
+                    Articulo.guardar(a);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Articulo>> call, Throwable t) {
+                Log.d("retrofit a", t.getMessage());
+            }
+        });
     }
 }

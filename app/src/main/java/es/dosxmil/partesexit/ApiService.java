@@ -2,6 +2,8 @@ package es.dosxmil.partesexit;
 
 import java.util.List;
 
+import es.dosxmil.partesexit.mapeo.Articulo;
+import es.dosxmil.partesexit.mapeo.Cliente;
 import es.dosxmil.partesexit.mapeo.ParteCabecera;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,5 +18,17 @@ public interface ApiService {
             @Header("Authorization") String token,
             @Path(value = "codigoEmpresa", encoded = true)int codigoEmpresa
     );
+
+     @GET("Cliente/{codigoEmpresa}")
+     Call<List<Cliente>> getClientes(
+             @Header("Authorization") String token,
+             @Path(value = "codigoEmpresa", encoded = true) int codigoEmpresa
+     );
+
+     @GET("Articulo/{codigoEmpresa}")
+     Call<List<Articulo>> getArticulos(
+             @Header("Authorization") String token,
+             @Path(value = "codigoEmpresa", encoded = true) int codigoEmpresa
+     );
 
 }
