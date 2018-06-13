@@ -2,8 +2,6 @@ package es.dosxmil.partesexit.mapeo;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -15,24 +13,24 @@ public class ParteLinea {
 
     private long id;
 
-    private int codigoEmpresa;
-    private int ejercicioParte;
-    private String serieParte;
-    private int numeroParte;
-    private int orden;
-    private String codigoArticulo;
-    private String descripcionArticulo;
-    private String descripcionLinea;
-    private String fechaParte;
-    private String fechaRegistro;
-    private String fechaEntrega;
-    private int codigoEmpleado;
-    private String nombreCompleto;
-    private double precio;
-    private double importe;
-    private int gastos;
-    private double unidades;
-    private int facturable;
+    private int CodigoEmpresa;
+    private int EjercicioParte;
+    private String SerieParte;
+    private int NumeroParte;
+    private int Orden;
+    private String CodigoArticulo;
+    private String DescripcionArticulo;
+    private String DescripcionLinea;
+    private String FechaParte;
+    private String FechaRegistro;
+    private String FechaEntrega;
+    private int CodigoEmpleado;
+    private String NombreCompleto;
+    private double Precio;
+    private double Importe;
+    private int Gastos;
+    private double Unidades;
+    private int Facturable;
 
     private static String[] columnas = new String[]{"_id","CodigoEmpresa","EjercicioParte","SerieParte","NumeroParte",
                                             "Orden","CodigoArticulo","DescripcionArticulo", "DescripcionLinea","FechaParte",
@@ -44,172 +42,172 @@ public class ParteLinea {
                       String codigoArticulo, String descripcionArticulo, String descripcionLinea, String fechaParte,
                       String fechaRegistro, String fechaEntrega, int codigoEmpleado, String nombreCompleto,
                       double precio, double importe, int gastos, double unidades, int facturable) {
-        this.codigoEmpresa = codigoEmpresa;
-        this.ejercicioParte = ejercicioParte;
-        this.serieParte = serieParte;
-        this.numeroParte = numeroParte;
-        this.orden = orden;
-        this.codigoArticulo = codigoArticulo;
-        this.descripcionArticulo = descripcionArticulo;
-        this.descripcionLinea = descripcionLinea;
-        this.fechaParte = fechaParte;
-        this.fechaRegistro = fechaRegistro;
-        this.fechaEntrega = fechaEntrega;
-        this.codigoEmpleado = codigoEmpleado;
-        this.nombreCompleto = nombreCompleto;
-        this.precio = precio;
-        this.importe = importe;
-        this.gastos = gastos;
-        this.unidades = unidades;
-        this.facturable = facturable;
+        this.CodigoEmpresa = codigoEmpresa;
+        this.EjercicioParte = ejercicioParte;
+        this.SerieParte = serieParte;
+        this.NumeroParte = numeroParte;
+        this.Orden = orden;
+        this.CodigoArticulo = codigoArticulo;
+        this.DescripcionArticulo = descripcionArticulo;
+        this.DescripcionLinea = descripcionLinea;
+        this.FechaParte = fechaParte;
+        this.FechaRegistro = fechaRegistro;
+        this.FechaEntrega = fechaEntrega;
+        this.CodigoEmpleado = codigoEmpleado;
+        this.NombreCompleto = nombreCompleto;
+        this.Precio = precio;
+        this.Importe = importe;
+        this.Gastos = gastos;
+        this.Unidades = unidades;
+        this.Facturable = facturable;
     }
 
     public void setCodigoEmpresa(int codigoEmpresa) {
-        this.codigoEmpresa = codigoEmpresa;
+        this.CodigoEmpresa = codigoEmpresa;
     }
 
     public void setEjercicioParte(int ejercicioParte) {
-        this.ejercicioParte = ejercicioParte;
+        this.EjercicioParte = ejercicioParte;
     }
 
     public void setSerieParte(String serieParte) {
-        this.serieParte = serieParte;
+        this.SerieParte = serieParte;
     }
 
     public void setNumeroParte(int numeroParte) {
-        this.numeroParte = numeroParte;
+        this.NumeroParte = numeroParte;
     }
 
     public void setOrden(int orden) {
-        this.orden = orden;
+        this.Orden = orden;
     }
 
     public void setCodigoArticulo(String codigoArticulo) {
-        this.codigoArticulo = codigoArticulo;
+        this.CodigoArticulo = codigoArticulo;
     }
 
     public void setDescripcionArticulo(String descripcionArticulo) {
-        this.descripcionArticulo = descripcionArticulo;
+        this.DescripcionArticulo = descripcionArticulo;
     }
 
     public void setDescripcionLinea(String descripcionLinea) {
-        this.descripcionLinea = descripcionLinea;
+        this.DescripcionLinea = descripcionLinea;
     }
 
     public void setFechaParte(String fechaParte) {
-        this.fechaParte = fechaParte;
+        this.FechaParte = fechaParte;
     }
 
     public void setFechaRegistro(String fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+        this.FechaRegistro = fechaRegistro;
     }
 
     public void setFechaEntrega(String fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+        this.FechaEntrega = fechaEntrega;
     }
 
     public void setCodigoEmpleado(int codigoEmpleado) {
-        this.codigoEmpleado = codigoEmpleado;
+        this.CodigoEmpleado = codigoEmpleado;
     }
 
     public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+        this.NombreCompleto = nombreCompleto;
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.Precio = precio;
     }
 
     public void setImporte(double importe) {
-        this.importe = importe;
+        this.Importe = importe;
     }
 
     public void setGastos(int gastos) {
-        this.gastos = gastos;
+        this.Gastos = gastos;
     }
 
     public void setUnidades(double unidades) {
-        this.unidades = unidades;
+        this.Unidades = unidades;
     }
 
     public void setFacturable(int facturable) {
-        this.facturable = facturable;
+        this.Facturable = facturable;
     }
 
     public int getCodigoEmpresa() {
-        return codigoEmpresa;
+        return CodigoEmpresa;
     }
 
     public int getEjercicioParte() {
-        return ejercicioParte;
+        return EjercicioParte;
     }
 
     public String getSerieParte() {
-        return serieParte;
+        return SerieParte;
     }
 
     public int getNumeroParte() {
-        return numeroParte;
+        return NumeroParte;
     }
 
     public int getOrden() {
-        return orden;
+        return Orden;
     }
 
     public String getCodigoArticulo() {
-        return codigoArticulo;
+        return CodigoArticulo;
     }
 
     public String getDescripcionArticulo() {
-        return descripcionArticulo;
+        return DescripcionArticulo;
     }
 
-    public String getDescripcionLinea() { return descripcionLinea; }
+    public String getDescripcionLinea() { return DescripcionLinea; }
 
     public String getFechaParte() {
-        return fechaParte;
+        return FechaParte;
     }
 
     public String getFechaRegistro() {
-        return fechaRegistro;
+        return FechaRegistro;
     }
 
     public String getFechaEntrega() {
-        return fechaEntrega;
+        return FechaEntrega;
     }
 
     public int getCodigoEmpleado() {
-        return codigoEmpleado;
+        return CodigoEmpleado;
     }
 
     public String getNombreCompleto() {
-        return nombreCompleto;
+        return NombreCompleto;
     }
 
     public double getPrecio() {
-        return precio;
+        return Precio;
     }
 
     public double getImporte() {
-        return importe;
+        return Importe;
     }
 
     public int getGastos() {
-        return gastos;
+        return Gastos;
     }
 
     public double getUnidades() {
-        return unidades;
+        return Unidades;
     }
 
     public int getFacturable() {
-        return facturable;
+        return Facturable;
     }
 
     public long getId() {
         Cursor c = MainActivity.getDb().query("ParteLineas",columnas,
                 "CodigoEmpresa = ? AND EjercicioParte = ? AND SerieParte = ? AND NumeroParte = ? AND Orden = ?",
-                new String[]{codigoEmpresa+"",ejercicioParte+"",serieParte+"",numeroParte+"", orden+""}, null, null, null);
+                new String[]{CodigoEmpresa +"", EjercicioParte +"", SerieParte +"",NumeroParte+"", Orden +""}, null, null, null);
         if (c.moveToFirst())
             id = c.getLong(0);
         else
@@ -278,47 +276,47 @@ public class ParteLinea {
     }
 
     private void putCv(ContentValues cv) {
-        cv.put(columnas[1], this.codigoEmpresa);
-        cv.put(columnas[2], this.ejercicioParte);
-        cv.put(columnas[3], this.serieParte);
-        cv.put(columnas[4], this.numeroParte);
-        cv.put(columnas[5], this.orden);
-        cv.put(columnas[6], this.codigoArticulo);
-        cv.put(columnas[7], this.descripcionArticulo);
-        cv.put(columnas[8], this.descripcionLinea);
-        cv.put(columnas[9], this.fechaParte);
-        cv.put(columnas[10], this.fechaRegistro);
-        cv.put(columnas[11], this.fechaEntrega);
-        cv.put(columnas[12], this.codigoEmpleado);
-        cv.put(columnas[13], this.nombreCompleto);
-        cv.put(columnas[14], this.precio);
-        cv.put(columnas[15], this.importe);
-        cv.put(columnas[16], this.gastos);
-        cv.put(columnas[17], this.unidades);
-        cv.put(columnas[18], this.facturable);
+        cv.put(columnas[1], this.CodigoEmpresa);
+        cv.put(columnas[2], this.EjercicioParte);
+        cv.put(columnas[3], this.SerieParte);
+        cv.put(columnas[4], this.NumeroParte);
+        cv.put(columnas[5], this.Orden);
+        cv.put(columnas[6], this.CodigoArticulo);
+        cv.put(columnas[7], this.DescripcionArticulo);
+        cv.put(columnas[8], this.DescripcionLinea);
+        cv.put(columnas[9], this.FechaParte);
+        cv.put(columnas[10], this.FechaRegistro);
+        cv.put(columnas[11], this.FechaEntrega);
+        cv.put(columnas[12], this.CodigoEmpleado);
+        cv.put(columnas[13], this.NombreCompleto);
+        cv.put(columnas[14], this.Precio);
+        cv.put(columnas[15], this.Importe);
+        cv.put(columnas[16], this.Gastos);
+        cv.put(columnas[17], this.Unidades);
+        cv.put(columnas[18], this.Facturable);
     }
 
     public Pair<String, String>[] getArrayValores() {
 
         Pair[] v = new Pair[]{
-                new Pair<String, String>("CodigoEmpresa", this.codigoEmpresa + ""),
-                new Pair<String, String>("EjercicioParte", this.ejercicioParte + ""),
-                new Pair<String, String>("SerieParte", this.serieParte + ""),
-                new Pair<String, String>("NumeroParte", this.numeroParte + ""),
-                new Pair<String, String>("Orden", this.orden + ""),
-                new Pair<String, String>("CodigoArticulo", this.codigoArticulo),
-                new Pair<String, String>("DescripcionArticulo", this.descripcionArticulo),
-                new Pair<String, String>("DescripcionLinea", this.descripcionLinea),
-                new Pair<String, String>("FechaParte", Utils.FormatoSincronizacion(this.fechaParte)),
-                new Pair<String, String>("FechaRegistro", Utils.FormatoSincronizacion(this.fechaRegistro)),
-                new Pair<String, String>("CodigoEmpleado", this.codigoEmpleado + ""),
-                new Pair<String, String>("NombreCompleto", this.nombreCompleto),
-                new Pair<String, String>("Unidades", this.unidades + ""),
-                new Pair<String, String>("Precio", this.precio + ""),
-                new Pair<String, String>("Importe", this.importe + ""),
-                new Pair<String, String>("Facturable", this.facturable + ""),
-                new Pair<String, String>("Gastos", this.gastos + ""),
-                new Pair<String, String>("Mil_FechaEntrega", Utils.FormatoSincronizacion(this.fechaEntrega))
+                new Pair<String, String>("CodigoEmpresa", this.CodigoEmpresa + ""),
+                new Pair<String, String>("EjercicioParte", this.EjercicioParte + ""),
+                new Pair<String, String>("SerieParte", this.SerieParte + ""),
+                new Pair<String, String>("NumeroParte", this.NumeroParte + ""),
+                new Pair<String, String>("Orden", this.Orden + ""),
+                new Pair<String, String>("CodigoArticulo", this.CodigoArticulo),
+                new Pair<String, String>("DescripcionArticulo", this.DescripcionArticulo),
+                new Pair<String, String>("DescripcionLinea", this.DescripcionLinea),
+                new Pair<String, String>("FechaParte", Utils.FormatoSincronizacion(this.FechaParte)),
+                new Pair<String, String>("FechaRegistro", Utils.FormatoSincronizacion(this.FechaRegistro)),
+                new Pair<String, String>("CodigoEmpleado", this.CodigoEmpleado + ""),
+                new Pair<String, String>("NombreCompleto", this.NombreCompleto),
+                new Pair<String, String>("Unidades", this.Unidades + ""),
+                new Pair<String, String>("Precio", this.Precio + ""),
+                new Pair<String, String>("Importe", this.Importe + ""),
+                new Pair<String, String>("Facturable", this.Facturable + ""),
+                new Pair<String, String>("Gastos", this.Gastos + ""),
+                new Pair<String, String>("Mil_FechaEntrega", Utils.FormatoSincronizacion(this.FechaEntrega))
         };
 
         return v;

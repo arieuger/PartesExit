@@ -41,7 +41,7 @@ public class CursorAdapterParteLineas extends SimpleCursorAdapter {
         int codigoEmpleado = c.getInt(c.getColumnIndex("CodigoEmpleado"));
         String nombreEmpleado = c.getString(c.getColumnIndex("NombreCompleto"));
         String fechaRegistro = c.getString(c.getColumnIndex("FechaRegistro"));
-        String fechaEntrega = c.getString(c.getColumnIndex("MIL_FechaEntrega"));
+        String fechaParte = c.getString(c.getColumnIndex("FechaParte"));
         int gastos = c.getInt(c.getColumnIndex("Gastos"));
         int facturable = c.getInt(c.getColumnIndex("Facturable"));
         double unidades = c.getDouble(c.getColumnIndex("Unidades"));
@@ -53,8 +53,8 @@ public class CursorAdapterParteLineas extends SimpleCursorAdapter {
         tvOrden.setText(orden + "");
         tvCodigoEmpleado.setText(codigoEmpleado + "");
         tvNombreEmpleado.setText(nombreEmpleado);
-        tvFechaRegistro.setText(Utils.FormatoFecha(fechaRegistro));
-        tvFechaEntrega.setText(Utils.FormatoFecha(fechaEntrega));
+        tvFechaRegistro.setText(Utils.FormatoFecha(fechaParte));
+        tvFechaEntrega.setText(Utils.FormatoFecha(fechaRegistro));
 
         if (gastos == 0) ivGastos.setImageResource(R.drawable.ic_clear_black_24dp);
         else ivGastos.setImageResource(R.drawable.ic_done_black_24dp);

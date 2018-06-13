@@ -43,6 +43,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import es.dosxmil.partesexit.adapters.CursorAdapterParteLineas;
@@ -50,11 +51,14 @@ import es.dosxmil.partesexit.mapeo.Articulo;
 import es.dosxmil.partesexit.mapeo.ParteCabecera;
 import es.dosxmil.partesexit.mapeo.ParteLinea;
 import es.dosxmil.partesexit.utils.Utils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 public class ParteLineasActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
-    private final int DLINEAS = 10;
-    private final String urlDescargaLineas = "http://10.0.2.2/proba_2xmil/lineas_por_parte.php";
+    ApiService apiService;
+    Retrofit cliente;
 
     private ParteCabecera pc;
     private ListView lvParteLineas;
@@ -104,11 +108,35 @@ public class ParteLineasActivity extends AppCompatActivity implements AdapterVie
         tvImporte = (TextView) findViewById(R.id.tvParteLineasImporte);
         tvGastos = (TextView) findViewById(R.id.tvParteLineasGastos);
 
-        if (pc.getPlDescargado() == 0) descarga(urlDescargaLineas, this, DLINEAS,
-                new Pair<>("ejercicioParte", pc.getEjercicioParte() + ""),
-                new Pair<>("serieParte", pc.getSerieParte()),
-                new Pair<>("numeroParte", pc.getNumeroParte() + ""),
-                new Pair<>("codigoEmpresa", pc.getCodigoEmpresa() + ""));
+        cliente = RetrofitClient.getClient();
+        apiService = cliente.create(ApiService.class);
+
+        if (pc.getPlDescargado() == 0) {
+            apiService.getParteLineas("Bearer " + sp.getString("TOKEN",""),
+                                        pc.getCodigoEmpresa(),
+                                        pc.getEjercicioParte(),
+                                        pc.getSerieParte(),
+                                        pc.getNumeroParte())
+                    .enqueue(new Callback<List<ParteLinea>>() {
+                        @Override
+                        public void onResponse(Call<List<ParteLinea>> call, retrofit2.Response<List<ParteLinea>> response) {
+                            List<ParteLinea> listaLineas = response.body();
+                            Log.d("retrofit pl " , listaLineas.size() + "");
+                            for (ParteLinea pl : listaLineas) {
+
+                                ParteLinea.guardar(pl);
+                            }
+                            pc.setPlDescargado(1);
+                            ParteCabecera.actualizar(pc);
+                            fillLvParteLineas();
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<ParteLinea>> call, Throwable t) {
+                            Log.d("retrofit pl",t.getMessage());
+                        }
+                    });
+        }
 
         else fillLvParteLineas();
 
@@ -377,75 +405,6 @@ public class ParteLineasActivity extends AppCompatActivity implements AdapterVie
         CursorAdapterParteLineas capl = new CursorAdapterParteLineas(this, c, 0);
 
         lvParteLineas.setAdapter(capl);
-
-    }
-
-    private void descarga(String url, final Context context, final int tipo, final Pair<String, String>... params) {
-
-        RequestQueue requestQueue = new Volley().newRequestQueue(context);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    if (tipo == DLINEAS) {
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject o = jsonArray.getJSONObject(i);
-                            pl = new ParteLinea(
-                                    o.getInt("CodigoEmpresa"),
-                                    o.getInt("EjercicioParte"),
-                                    o.getString("SerieParte"),
-                                    o.getInt("NumeroParte"),
-                                    o.getInt("Orden"),
-                                    o.getString("CodigoArticulo"),
-                                    o.getString("DescripcionArticulo"),
-                                    o.getString("DescripcionLinea"),
-                                    o.getJSONObject("FechaParte").getString("date"),
-                                    o.getJSONObject("FechaRegistro").getString("date"),
-                                    o.getJSONObject("MIL_FechaEntrega").getString("date"),
-                                    o.getInt("CodigoEmpleado"),
-                                    o.getString("NombreCompleto"),
-                                    o.getDouble("Precio"),
-                                    o.getDouble("Importe"),
-                                    o.getInt("Gastos"),
-                                    o.getDouble("Unidades"),
-                                    o.getInt("Facturable")
-                            );
-
-                            ParteLinea.guardar(pl);
-                        }
-
-                        pc.setPlDescargado(1);
-                        ParteCabecera.actualizar(pc);   // Para marcar que as líneas de este parte están xa na memoria local.
-
-                        fillLvParteLineas();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "VolleyError", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        })
-
-        {
-            protected Map<String, String> getParams() {
-                Map<String, String> param = new HashMap<>();
-                for (Pair<String, String> param1 : params) {
-                    param.put(param1.first, param1.second);
-                }
-                return param;
-            }
-        };
-
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        postRequest.setRetryPolicy(policy);
-        requestQueue.add(postRequest);
 
     }
 

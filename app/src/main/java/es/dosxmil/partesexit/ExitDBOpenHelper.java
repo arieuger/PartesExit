@@ -62,7 +62,7 @@ public class ExitDBOpenHelper extends SQLiteOpenHelper {
                 "DescripcionLinea TEXT NOT NULL DEFAULT \"\", " +
                 "FechaParte TEXT NOT NULL, " +
                 "FechaRegistro TEXT NOT NULL, " +
-                "MIL_FechaEntrega TEXT NOT NULL, " +
+                "MIL_FechaEntrega TEXT, " +
                 "CodigoEmpleado INTEGER NOT NULL, " +
                 "NombreCompleto TEXT NOT NULL, " +
                 "Precio REAL NOT NULL, " +
