@@ -28,8 +28,6 @@ public class Utils {
     }
 
     public static String FormatoSincronizacion(String s) {
-        // SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd",Locale.getDefault());
-        // return sdf2.format(new Date(Timestamp.valueOf(s).getTime()));
         return s.split(" ")[0]+"T"+s.split(" ")[1];
     }
 

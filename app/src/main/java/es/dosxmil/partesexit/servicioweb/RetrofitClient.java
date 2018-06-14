@@ -1,10 +1,11 @@
-package es.dosxmil.partesexit;
+package es.dosxmil.partesexit.servicioweb;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import es.dosxmil.partesexit.servicioweb.ApiService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

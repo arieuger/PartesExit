@@ -32,6 +32,9 @@ import es.dosxmil.partesexit.mapeo.Cliente;
 import es.dosxmil.partesexit.mapeo.ParteCabecera;
 import es.dosxmil.partesexit.mapeo.ParteLinea;
 
+import es.dosxmil.partesexit.servicioweb.ApiService;
+import es.dosxmil.partesexit.servicioweb.RetrofitClient;
+import es.dosxmil.partesexit.servicioweb.StringResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -55,8 +58,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private SearchView searchView;
     private ProgressBar pbMain;
 
-    private String sUltimaModSrv;
-
+    private String fumSrv;
 
     public static SQLiteDatabase getDb() {
         return db;
@@ -190,9 +192,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 startActivity(new Intent(this, DetallesParteActivity.class));
                 break;
             case R.id.mi_main_toolbar_usr:
+                // TODO
                 break;
             case R.id.mi_main_toolbar_sinc:
-
+                sincroniza();
                 break;
         }
 
@@ -203,10 +206,25 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Todo: aviso na barra de notificacións cando a sincronización esté rematada
 
         // De local a servidor: subida novos partes
+        apiService.getFumSrv("Bearer " + sp.getString("TOKEN",""),codigoEmpresa).enqueue(new Callback<StringResponse>() {
+            @Override
+            public void onResponse(Call<StringResponse> call, retrofit2.Response<StringResponse> response) {
+                Log.d("retrofit fum",response.code()+"" + ": " + response.message());
+                fumSrv = response.body().getString();
+                Log.d("retrofit fum" , fumSrv);
+
+                // os pc que teñan unha data superior a esta, súbense á rede, e as súas liñas tamén
+            }
+
+            @Override
+            public void onFailure(Call<StringResponse> call, Throwable t) {
+
+            }
+        });
 
         // De servidor a local: descarga novos partes
-
-        // TODO: Sincronizar borrados
+        descargaPC();
+        // TODO: Liñas
 
         // Descarga artigos
 
@@ -274,7 +292,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     private void descargaPC() {
-        apiService.getPartesCabecera("Bearer " + sp.getString("TOKEN",""),codigoEmpresa).enqueue(new Callback<List<ParteCabecera>>() {
+        apiService.getPartesCabecera("Bearer " + sp.getString("TOKEN",""),codigoEmpresa, ParteCabecera.getMaxFUM())
+                .enqueue(new Callback<List<ParteCabecera>>() {
             @Override
             public void onResponse(Call<List<ParteCabecera>> call, retrofit2.Response<List<ParteCabecera>> response) {
                 Log.d("retrofit p",response.code()+"" + ": " + response.message());
@@ -282,7 +301,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     listaPartes = response.body();
                     Log.d("retrofit p",listaPartes.size()+"");
                     for (ParteCabecera pc : listaPartes)
-                        ParteCabecera.guardar(pc);
+                        if (ParteCabecera.getByID(pc.getId()) == null) {
+                            ParteCabecera.guardar(pc);
+                            Toast.makeText(MainActivity.this, "Parte guardado", Toast.LENGTH_SHORT).show();
+                        } else {
+                            ParteCabecera.actualizar(pc);
+                            Toast.makeText(MainActivity.this, "Parte actualizado", Toast.LENGTH_SHORT).show();
+                        }
                 }
             }
 

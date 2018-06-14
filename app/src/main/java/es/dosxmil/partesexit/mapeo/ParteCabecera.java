@@ -55,7 +55,6 @@ public class ParteCabecera implements Parcelable {
 
     // no subir
     private int sincroMovil;
-    // TODO: FirmaParteEntrada (Imaxe)
 
     private static String[] columnas = {"_id","CodigoEmpresa","EjercicioParte","SerieParte","NumeroParte"
             ,"StatusParte","TipoParte","DescripcionTipoParte","CodigoArticulo","DescripcionArticulo","FechaParte",
@@ -231,7 +230,7 @@ public class ParteCabecera implements Parcelable {
 
 
     // BORRADOS
-    // Para o borrado de un sólo parte: Dende DetallesParteActivity
+    // Para o borrado de múltiples partes: Dende MainActivity
     public static int borrarPartePorID(ArrayList<Long> lista) {
         int borrados = 0;
         for (long l:lista) {
@@ -247,7 +246,7 @@ public class ParteCabecera implements Parcelable {
         return borrados;
     }
 
-    // Para o borrado de múltiples partes: Dende MainActivity
+    // Para o borrado de un sólo parte: Dende DetallesParteActivity
     public static void borrarPartePorID(long parteID) {
         ParteCabecera pc = ParteCabecera.getByID(parteID);
         MainActivity.getDb().delete("ParteLineas",
@@ -272,9 +271,13 @@ public class ParteCabecera implements Parcelable {
         return pcs;
     }
 
-//    public static String getMaxFUM() {
-//        String sql = "SELECT "
-//    }
+    public static String getMaxFUM() {
+        String sql = "SELECT max(FechaUltimaModificacion) FROM ParteCabecera;";
+
+        Cursor c = MainActivity.getDb().rawQuery(sql,null);
+        if (c.moveToNext()) return Utils.FormatoSincronizacion(c.getString(0));
+        else return null;
+    }
 
 
 
