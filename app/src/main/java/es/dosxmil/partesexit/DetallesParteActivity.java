@@ -1,8 +1,6 @@
 package es.dosxmil.partesexit;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,19 +26,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,26 +33,28 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import es.dosxmil.partesexit.mapeo.Cliente;
 import es.dosxmil.partesexit.mapeo.ParteCabecera;
+import es.dosxmil.partesexit.mapeo.Proyecto;
+import es.dosxmil.partesexit.servicioweb.ApiService;
+import es.dosxmil.partesexit.servicioweb.RetrofitClient;
 import es.dosxmil.partesexit.utils.DatePickerFragment;
 import es.dosxmil.partesexit.utils.Utils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 public class DetallesParteActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-
-    private static final int DCLIENTE = 10;
-    private static final int DPROYECTOS = 20;
 
     private SimpleDateFormat sdf;
     private SharedPreferences sp;
 
     private ParteCabecera p;
 
-    private ArrayList<Pair<Integer, String>> proyectos = new ArrayList<>();
+    private List<Proyecto> proyectos = new ArrayList<>();
     private ArrayList<Pair<String, String>> busquedaClientes = new ArrayList<>();
 
     private TextView tvSerie;
@@ -93,11 +80,8 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
     private long parteID;
     private int codigoEmpresa;
 
-    private final String urlClientesCodigo = "http://10.0.2.2/proba_2xmil/clientes_por_codigo.php";
-    private final String urlProyectos = "http://10.0.2.2/proba_2xmil/proyectos_cliente.php";
-    private final String urlClientesCif = "http://10.0.2.2/proba_2xmil/clientes_por_cif_dni.php";
-    private final String urlClientesNombre = "http://10.0.2.2/proba_2xmil/busqueda_clientes_nombre.php";
-
+    ApiService apiService;
+    Retrofit cliente;
 
     private LinearLayout llADN1;
     private LinearLayout llADN2;
@@ -150,6 +134,9 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
         etFechaEjec.setOnClickListener(this);
         ivEstadoParte.setOnClickListener(this);
 
+        cliente = RetrofitClient.getClient();
+        apiService = cliente.create(ApiService.class);
+
         // CAMBIOS PARTE XA CREADO / NOVO PARTE
         // Si non hai intent de id, entramos na pantalla para crear un parte novo. Así que non cargamos info
         if (parteID != 0) cargaInfo();
@@ -192,7 +179,6 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
                     p.setFechaParte(Utils.FormatoATimestamp(etFecha.getText().toString()).toString());
                     p.setFechaUltimaModificacion(new Timestamp(new Date().getTime()).toString());
                     Log.d("SINC", "FUM - " + p.getFechaUltimaModificacion());
-                    // TODO: Comprobación de cambios
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -278,15 +264,7 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
                 break;
         }
 
-        Cliente c = Cliente.clientePorCodigo(p.getCodigoCliente());
-
-        if (c == null) {
-            Toast.makeText(this, "" + p.getCodigoCliente(), Toast.LENGTH_SHORT).show();
-
-            descarga(urlClientesCodigo, this, DCLIENTE,
-                    new Pair<String,String>("codigoCliente", p.getCodigoCliente()),
-                    new Pair<String,String>("codigoEmpresa", codigoEmpresa+""));
-        } else cubrirDatos(c);
+        cubrirDatos(Cliente.clientePorCodigo(p.getCodigoCliente()));
 
         etCRecepcion.setText(p.getComentarioRecepcion());
         etCCierre.setText(p.getComentarioCierre());
@@ -378,6 +356,8 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
                 } else {
                     Toast.makeText(DetallesParteActivity.this, "Cliente no encontrado.", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
@@ -400,10 +380,15 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
         ad.setButton(DialogInterface.BUTTON_POSITIVE, getResources().getText(android.R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String nproyecto = spNPNombreProyecto.getSelectedItem().toString();
-                tvNombreProyecto.setText(nproyecto);
-                tvNumeroProyecto.setText(proyectos.get(spNPNombreProyecto.getSelectedItemPosition()).first+"");
-
+                if (spNPNombreProyecto.isEnabled()) {
+                    String nproyecto = spNPNombreProyecto.getSelectedItem().toString();
+                    tvNombreProyecto.setText(nproyecto);
+                    tvNumeroProyecto.setText(proyectos.get(spNPNombreProyecto.getSelectedItemPosition()).getCodigoProyecto());
+                }
+                else {
+                    tvNombreProyecto.setText("Sin proyecto asociado");
+                    tvNumeroProyecto.setText("0");
+                }
                 try {
                     p = new ParteCabecera(codigoEmpresa,parteEjercicio,serieParte,numeroParte,"P",
                             "","","","",
@@ -467,9 +452,36 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
             tvNPDomicilioCliente.setText(c.getDomicilio());
 
             // PROYECTOS
-            descarga(urlProyectos,DetallesParteActivity.this,DPROYECTOS,
-                    new Pair<>("codigoEmpresa",codigoEmpresa+""),
-                    new Pair<>("codigoCliente", c.getCodigoCliente()));
+            apiService.getProyectos("Bearer " + sp.getString("TOKEN",""), codigoEmpresa, c.getCodigoCliente())
+                    .enqueue(new Callback<List<Proyecto>>() {
+                        @Override
+                        public void onResponse(Call<List<Proyecto>> call, retrofit2.Response<List<Proyecto>> response) {
+                            Log.d("retrofit_proy","resp: " + response.code()+"" + ": " + response.message());
+                            proyectos = response.body();
+
+                            String[] strings = new String[proyectos.size()];
+                            for (int i = 0; i < strings.length; i++) {
+                                strings[i] = proyectos.get(i).getNombreProyecto();
+                            }
+
+                            if (strings.length>0) {
+                                spNPNombreProyecto.setEnabled(true);
+                                ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(DetallesParteActivity.this,
+                                        android.R.layout.simple_spinner_item, strings);
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spNPNombreProyecto.setAdapter(adapter);
+                            } else {
+                                spNPNombreProyecto.setEnabled(false);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Proyecto>> call, Throwable t) {
+                            Log.d("retrofit_proy",t.getMessage());
+                        }
+                    });
+
+
         }
 
         tvRSCliente.setText(c.getRazonSocial());
@@ -491,60 +503,6 @@ public class DetallesParteActivity extends AppCompatActivity implements View.OnC
         tvCifDniCliente.setText("");
         tvDomicilioCliente.setText("");
 
-    }
-
-    public void descarga(final String url, final Context context, final int tipoDescarga, final Pair<String, String>... params) {
-        RequestQueue requestQueue = new Volley().newRequestQueue(context);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    if (tipoDescarga == DPROYECTOS) {
-                        proyectos.add(new Pair<>(0,"Sin proyecto asociado"));
-                        JSONArray jsonArray = new JSONArray(response);
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            proyectos.add(new Pair<>(jsonArray.getJSONObject(i).getInt("CodigoProyecto"),
-                                    jsonArray.getJSONObject(i).getString("NombreProyecto")));
-                        }
-                        String[] strings = new String[proyectos.size()];
-                        for (int i = 0; i < strings.length; i++) {
-                            strings[i] = proyectos.get(i).second;
-                        }
-
-                        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(DetallesParteActivity.this,
-                                android.R.layout.simple_spinner_item,strings);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spNPNombreProyecto.setAdapter(adapter);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "VolleyError", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        })
-
-        {
-            protected Map<String, String> getParams() {
-                Map<String, String> param = new HashMap<>();
-                for (int i = 0; i < params.length; i++) {
-                    param.put(params[i].first, params[i].second);
-                }
-
-                return param;
-            }
-        };
-
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        postRequest.setRetryPolicy(policy);
-        requestQueue.add(postRequest);
     }
 
     @Override

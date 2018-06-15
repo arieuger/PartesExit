@@ -10,6 +10,9 @@ import android.util.Pair;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import es.dosxmil.partesexit.MainActivity;
 import es.dosxmil.partesexit.utils.Utils;
@@ -258,10 +261,10 @@ public class ParteCabecera implements Parcelable {
 
 
     // SINCRONIZACIÓN
-    public static ArrayList<ParteCabecera> partesSinSubir(String umodsrv) {
-        ArrayList<ParteCabecera> pcs = new ArrayList<>();
+    public static List<ParteCabecera> partesSinSubir(String fumSrv) {
+        List<ParteCabecera> pcs = new ArrayList<>();
 
-        String sql = "SELECT * FROM ParteCabecera WHERE FechaUltimaModificacion > '" + umodsrv + "';";
+        String sql = "SELECT * FROM ParteCabecera WHERE FechaUltimaModificacion > '" + fumSrv + "';";
         // String sql = "SELECT * FROM ParteCabecera WHERE SincroMovil = 0;";
         Log.d("SINCCOMP", "SQL: " + sql);
         Cursor c = MainActivity.getDb().rawQuery(sql,null);
@@ -273,10 +276,16 @@ public class ParteCabecera implements Parcelable {
 
     public static String getMaxFUM() {
         String sql = "SELECT max(FechaUltimaModificacion) FROM ParteCabecera;";
+        String count = "SELECT EXISTS(SELECT 1 FROM ParteCabecera)";
+        Cursor isEmpty = MainActivity.getDb().rawQuery(count, null);
+        isEmpty.moveToNext();
+        if (isEmpty.getInt(0) != 0) {
+            Cursor c = MainActivity.getDb().rawQuery(sql,null);
+            c.moveToNext();
+            return Utils.FormatoSincronizacion(c.getString(0));
 
-        Cursor c = MainActivity.getDb().rawQuery(sql,null);
-        if (c.moveToNext()) return Utils.FormatoSincronizacion(c.getString(0));
-        else return null;
+        } else return "1980-01-01T00:00:00.000";
+
     }
 
 
@@ -335,6 +344,50 @@ public class ParteCabecera implements Parcelable {
                 new Pair<String, String>("CodigoUsuarioCierre",this.CodigoUsuarioCierre +""),
                 new Pair<String, String>("FechaCierre",Utils.FormatoSincronizacion(FechaCierre)),
                 new Pair<String, String>("HoraCierre",this.HoraCierre +"")};
+
+        return v;
+    }
+
+    public Map<String, String> getMapValores() {
+
+        if (FechaCierre.equals("") || FechaCierre == null) FechaCierre = "1900-01-01 00:00:00";
+        Log.d("SINC", FechaCierre);
+
+        String estadoEjecucion = "";
+        switch (this.StatusParte) {
+            case "A":
+                estadoEjecucion= "En ejecucion";
+                break;
+            case "C":
+                estadoEjecucion = "Finalizado";
+                break;
+        }
+
+        Map<String, String> v = new HashMap<String, String>();
+                v.put("CodigoEmpresa", this.CodigoEmpresa +"");
+                v.put("EjercicioParte",this.EjercicioParte +"");
+                v.put("SerieParte",this.SerieParte +"");
+                v.put("NumeroParte",this.NumeroParte +"");
+                v.put("StatusParte",this.StatusParte);
+                v.put("CodigoArticulo",this.CodigoArticulo);
+                v.put("DescripcionArticulo",this.DescripcionArticulo);
+                v.put("FechaParte",Utils.FormatoSincronizacion(this.FechaParte));
+                v.put("CodigoEmpleado",this.CodigoEmpleado +"");
+                v.put("NombreCompleto",this.NombreCompleto);
+                v.put("CodigoProyecto",this.CodigoProyecto +"");
+                v.put("NombreProyecto",this.NombreProyecto);
+                v.put("ComentarioCierre",this.ComentarioCierre);
+                v.put("ComentarioRecepcion",this.ComentarioRecepcion);
+                v.put("CodigoCliente",this.CodigoCliente);
+                v.put("Importe",this.Importe +"");
+                v.put("ImporteGastos",this.ImporteGastos +"");
+                v.put("ImporteFacturable",this.ImporteFacturable +"");
+                v.put("FechaUltimaModificacion",Utils.FormatoSincronizacion(this.FechaUltimaModificacion));
+                v.put("FechaEjecucion",Utils.FormatoSincronizacion(this.FechaEjecucion));
+                v.put("EstadoEjecucion",estadoEjecucion);
+                v.put("CodigoUsuarioCierre",this.CodigoUsuarioCierre +"");
+                v.put("FechaCierre",Utils.FormatoSincronizacion(FechaCierre));
+                v.put("HoraCierre",this.HoraCierre +"");
 
         return v;
     }

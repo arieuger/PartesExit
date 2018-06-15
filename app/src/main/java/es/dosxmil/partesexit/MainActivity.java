@@ -37,10 +37,10 @@ import es.dosxmil.partesexit.servicioweb.RetrofitClient;
 import es.dosxmil.partesexit.servicioweb.StringResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
-    // TODO: Mellorar búsqueda
 
     private BottomNavigationView bottomNavigationView;
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         else fillListView(this, lvPartesCabecera, c);
 
-        // Implementa barar inferior de navegación
+        // Implementa barra inferior de navegación
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -211,14 +211,37 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void onResponse(Call<StringResponse> call, retrofit2.Response<StringResponse> response) {
                 Log.d("retrofit fum",response.code()+"" + ": " + response.message());
                 fumSrv = response.body().getString();
-                Log.d("retrofit fum" , fumSrv);
-
+                Log.d("retrofit fum", fumSrv);
                 // os pc que teñan unha data superior a esta, súbense á rede, e as súas liñas tamén
+                List<ParteCabecera> partesSinSubir = ParteCabecera.partesSinSubir(fumSrv);
+                for (ParteCabecera pc : partesSinSubir) {
+
+                    // TODO: Actualizar/insertar liñas
+                    subirLineas(pc);
+
+                    // Actualización / inserción de partes
+                    apiService.updatePartesSrv("Bearer " + sp.getString("TOKEN",""),
+                            pc.getMapValores()).enqueue(new Callback<StringResponse>() {
+                            @Override
+                            public void onResponse(Call<StringResponse> call, retrofit2.Response<StringResponse> resp) {
+                                Log.d("retrofit_sincro","resp: " + resp.code()+"" + ": " + resp.message());
+                                Log.d("retrofit_sincro",call.request().url().toString());
+                                Log.d("retrofit_sincro",resp.body().getString());
+                            }
+
+                            @Override
+                            public void onFailure(Call<StringResponse> call, Throwable t) {
+                                Log.d("retrofit_sincro",t.getMessage());
+                            }
+                    });
+                }
+
+
             }
 
             @Override
             public void onFailure(Call<StringResponse> call, Throwable t) {
-
+                Log.d("retrofit fum",t.getMessage());
             }
         });
 
@@ -230,9 +253,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         // Descarga clientes
 
+
+
+        fillListView(this,lvPartesCabecera,ParteCabecera.getAllCursor());
     }
 
-    private void sincronizaLineas(ParteCabecera pc) {
+    private void subirLineas(ParteCabecera pc) {
         Cursor c = ParteLinea.getAllCursor(pc.getCodigoEmpresa(),pc.getEjercicioParte(),pc.getSerieParte(),pc.getNumeroParte());
         while (c.moveToNext()) {    // Inda que non foran modificadas todas as liñas, en principio subímolas todas
             ParteLinea pl = ParteLinea.getLineaPorID(c.getLong(0));
@@ -276,14 +302,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        // Selección de partes para o seu borrado
         if (!seleccionados.contains(id)) {
             seleccionados.add(id);
             view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            String s = "";
-            for (long l:seleccionados) {
-                s += l+" ";
-            }
-            Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         } else {
             seleccionados.remove(id);
             view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
